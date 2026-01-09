@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ProdutoService } from '../services/produto.service';
 import { CriarProdutoDto } from '../dto/criar-produto.dto';
@@ -19,16 +20,22 @@ import { ProdutoPersistido } from '../dto/produto.types';
 export class ProdutoController {
   constructor(private readonly produtoService: ProdutoService) {}
 
-  @Get()
+  @Get('/buscar')
   @HttpCode(HttpStatus.OK)
-  findAll(): Promise<ProdutoPersistido[]> {
-    return this.produtoService.findAll();
+  findByName(@Query('nome') nome: string): Promise<ProdutoPersistido[]> {
+    return this.produtoService.findByName(nome);
   }
 
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<ProdutoPersistido> {
     return this.produtoService.findById(id);
+  }
+
+  @Get()
+  @HttpCode(HttpStatus.OK)
+  findAll(): Promise<ProdutoPersistido[]> {
+    return this.produtoService.findAll();
   }
 
   @Post()
