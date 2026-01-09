@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -12,6 +13,7 @@ import {
 import { ProdutoService } from '../services/produto.service';
 import { CriarProdutoDto } from '../dto/criar-produto.dto';
 import { AtualizarProdutoDto } from '../dto/atualizar-produto.dto';
+import { ProdutoPersistido } from '../dto/produto.types';
 
 @Controller('/produtos')
 export class ProdutoController {
@@ -19,13 +21,19 @@ export class ProdutoController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  findAll(): Promise<CriarProdutoDto[]> {
+  findAll(): Promise<ProdutoPersistido[]> {
     return this.produtoService.findAll();
+  }
+
+  @Get('/:id')
+  @HttpCode(HttpStatus.OK)
+  findById(@Param('id', ParseIntPipe) id: number): Promise<ProdutoPersistido> {
+    return this.produtoService.findById(id);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED) //201
-  create(@Body() dto: CriarProdutoDto): Promise<CriarProdutoDto> {
+  create(@Body() dto: CriarProdutoDto): Promise<ProdutoPersistido> {
     return this.produtoService.create(dto);
   }
 
@@ -34,7 +42,13 @@ export class ProdutoController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AtualizarProdutoDto,
-  ): Promise<AtualizarProdutoDto> {
+  ): Promise<ProdutoPersistido> {
     return this.produtoService.update(id, dto);
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.produtoService.delete(id);
   }
 }

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1767934435788,
+    "nome": "Teclado Mecânico",
+    "categoria": "Periféricos",
+    "quantidade": 10,
+    "preco": 299.9
+  },
+  {
+    "id": 1767934494057,
+    "nome": "Mouse Gamer x",
+    "categoria": "Periféricos",
+    "quantidade": 25,
+    "preco": 149.9
+  },
+  {
+    "id": 1767934514990,
+    "nome": "Cadeira Gamer",
+    "categoria": "Móveis",
+    "quantidade": 8,
+    "preco": 899.9
+  },
+  {
+    "id": 1767934521724,
+    "nome": "Headset Bluetooth",
+    "categoria": "Periféricos",
+    "quantidade": 20,
+    "preco": 249.9
+  },
+  {
+    "id": 1767934528693,
+    "nome": "SSD 1TB",
+    "categoria": "Hardware",
+    "quantidade": 15,
+    "preco": 599.9
+  }
+]
